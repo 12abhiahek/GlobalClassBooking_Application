@@ -59,7 +59,7 @@ public class OfferingServiceImp implements OfferingService {
             Long teacherId) {
 
         return offeringRepository
-                .findByTeacherId(teacherId)
+                .findByTeacherTeacherId(teacherId)
                 .stream()
                 .map(OfferingMapper::toResponse)
                 .toList();

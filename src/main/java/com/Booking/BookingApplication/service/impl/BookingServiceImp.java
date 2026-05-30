@@ -5,13 +5,21 @@ import com.Booking.BookingApplication.dto.Response.CreateBookingResponse;
 import com.Booking.BookingApplication.entity.Booking;
 import com.Booking.BookingApplication.entity.Offering;
 import com.Booking.BookingApplication.entity.Student;
+import com.Booking.BookingApplication.exception.ResourceNotFoundException;
+import com.Booking.BookingApplication.mapper.BookingMapping;
 import com.Booking.BookingApplication.repository.BookingRepository;
 import com.Booking.BookingApplication.repository.OfferingRepository;
 import com.Booking.BookingApplication.repository.StudentRepository;
+import com.Booking.BookingApplication.service.BookingService;
+import com.Booking.BookingApplication.service.ConflictValidationService;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class BookingServiceImp implements BookingService {
 
     private final BookingRepository bookingRepository;
@@ -43,9 +51,9 @@ public class BookingServiceImp implements BookingService {
                                         "Offering not found"));
 
         boolean alreadyBooked =
-                bookingRepository.existsByStudentIdAndOfferingId(
+                bookingRepository.existsByStudentStudentIdAndOfferingOfferingId(
                         student.getStudentId(),
-                        offering.getId());
+                        offering.getOfferingId());
 
         if (alreadyBooked) {
 
@@ -56,7 +64,7 @@ public class BookingServiceImp implements BookingService {
         conflictValidationService
                 .validateBookingConflict(
                         student.getStudentId(),
-                        offering.getId());
+                        offering.getOfferingId());
 
         Booking booking =
                 Booking.builder()
@@ -69,7 +77,7 @@ public class BookingServiceImp implements BookingService {
                 bookingRepository.save(
                         booking);
 
-        return BookingMapper.toResponse(
+        return BookingMapping.toResponse(
                 savedBooking);
     }
 
@@ -78,11 +86,11 @@ public class BookingServiceImp implements BookingService {
             Long studentId) {
 
         List<Booking> bookings =
-                bookingRepository.findByStudentId(
+                bookingRepository.findByStudentStudentId(
                         studentId);
 
         return bookings.stream()
-                .map(BookingMapper::toResponse)
+                .map(BookingMapping::toResponse)
                 .toList();
     }
 }

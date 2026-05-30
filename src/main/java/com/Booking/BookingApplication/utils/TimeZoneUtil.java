@@ -8,7 +8,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 @Component
-public class TImeZoneUtil {
+public class TimeZoneUtil {
 
     public Instant convertToUtc(
             String localDateTime,

@@ -9,7 +9,7 @@ public class StudentMapper {
             Student student) {
 
         return CreateStudentResponse.builder()
-                .id(student.getStudentId())
+                .studentId(student.getStudentId())
                 .name(student.getName())
                 .email(student.getEmail())
                 .timezone(student.getTimezone())

@@ -9,7 +9,7 @@ public class TeacherMapper {
             Teacher teacher) {
 
         return CreateTeacherResponse.builder()
-                .id(teacher.getTeacherId())
+                .teacherId(teacher.getTeacherId())
                 .name(teacher.getName())
                 .email(teacher.getEmail())
                 .timezone(teacher.getTimezone())

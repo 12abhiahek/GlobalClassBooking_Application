@@ -1,8 +1,11 @@
 package com.Booking.BookingApplication.utils;
 
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Component
 public final class DateTimeUtil {
 
     private DateTimeUtil() {

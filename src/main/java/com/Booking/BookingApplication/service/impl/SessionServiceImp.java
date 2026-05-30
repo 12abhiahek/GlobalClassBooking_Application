@@ -7,6 +7,7 @@ import com.Booking.BookingApplication.entity.Session;
 import com.Booking.BookingApplication.exception.ResourceNotFoundException;
 import com.Booking.BookingApplication.repository.OfferingRepository;
 import com.Booking.BookingApplication.repository.SessionRepository;
+import com.Booking.BookingApplication.utils.TimeZoneUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +57,7 @@ public class SessionServiceImp implements com.Booking.BookingApplication.service
 
         return CreateSessionResponse.builder()
                 .sessionId(saved.getSessionId())
-                .offeringId(offering.getId())
+ //               .bookingId(offering.getOfferingId())
                 .startTime(saved.getStartTimeUtc().toString())
                 .endTime(saved.getEndTimeUtc().toString())
                 .build();
@@ -67,12 +68,12 @@ public class SessionServiceImp implements com.Booking.BookingApplication.service
             Long offeringId) {
 
         return sessionRepository
-                .findByOfferingId(offeringId)
+                .findByOfferingOfferingId(offeringId)
                 .stream()
                 .map(session ->
-                        CreateSessionResponse.builder()
-                                .sessionId(session.getId())
-                                .offeringId(offeringId)
+                                CreateSessionResponse.builder()
+                                .sessionId(session.getSessionId())
+ //                               .bookingId(offeringId)
                                 .startTime(
                                         session.getStartTimeUtc()
                                                 .toString())
@@ -89,12 +90,12 @@ public class SessionServiceImp implements com.Booking.BookingApplication.service
             String timezone) {
 
         return sessionRepository
-                .findByOfferingId(offeringId)
+                .findByOfferingOfferingId(offeringId)
                 .stream()
                 .map(session ->
                         CreateSessionResponse.builder()
-                                .sessionId(session.getId())
-                                .offeringId(offeringId)
+                                .sessionId(session.getSessionId())
+       //                         .bookingId(offeringId)
                                 .startTime(
                                         timeZoneUtil
                                                 .convertUtcToLocal(

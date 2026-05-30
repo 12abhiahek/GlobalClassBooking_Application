@@ -1,7 +1,15 @@
 package com.Booking.BookingApplication.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Entity
+@Table(name = "offering")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Offering {
 
     @Id

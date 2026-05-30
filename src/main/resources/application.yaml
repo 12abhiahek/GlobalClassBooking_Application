@@ -2,16 +2,33 @@ spring:
   application:
     name: BookingApplication
 
-    DataSource:
-      url: jdbc:mysql://localhost:3306/bookingdb?useSSL=false&serverTimezone=UTC
-      username: root
-      password: abhi@184
-      driver-class-name: com.mysql.cj.jdbc.Driver
-    jpa:
+  datasource:
+    url: jdbc:mysql://localhost:3306/Bookingdb?useSSL=false&serverTimezone=UTC
+    username: root
+    password: abhi@18
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+    properties:
       hibernate:
-        ddl-auto: update
-      show-sql: true
-      properties:
-        hibernate:
-          format_sql: true
-          dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+  api-docs:
+    path: /v3/api-docs
+
+server:
+  port: 8080

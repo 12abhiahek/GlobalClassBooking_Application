@@ -9,7 +9,7 @@ public class OfferingMapper {
             Offering offering) {
 
         return CreateOfferingResponse.builder()
-                .id(offering.getofferingId())
+                .offeringId(offering.getOfferingId())
                 .name(offering.getName())
                 .status(offering.getStatus())
                 .teacherName(
